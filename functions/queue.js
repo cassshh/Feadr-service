@@ -3,7 +3,7 @@
 function processNewPost(evt = DeltaSnapShot) {
     console.log('Processing new post');
     const post = evt.data.val();
-    const postUid = evt.param.postUid;
+    const postUid = evt.params.postUid;
 
     if (!post) {
         return console.log('Post removed from queue');
