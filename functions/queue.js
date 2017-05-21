@@ -26,12 +26,12 @@ function processNewPost(evt = DeltaSnapShot) {
         }
     }
 
-    const overviewPromise = admin.database().ref(`/overview/${postUid}`).set(overviewObject);
-    const postPromise = admin.database().ref(`/posts/${postUid}`).set(post);
+    const overviewPromise = evt.data.adminRef.root.child(`/overview/${postUid}`).set(overviewObject);
+    const postPromise = evt.data.adminRef.root.child(`/posts/${postUid}`).set(post);
 
     return Promise.all([overviewPromise, postPromise]).then(() => {
         console.log('Post has been processed');
-        return event.data.ref.remove();
+        return evt.data.ref.remove();
     });
 }
 
