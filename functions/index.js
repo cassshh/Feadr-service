@@ -33,7 +33,7 @@ exports.createPost = functions.database.ref('/queue_create_post/{postUid}').onWr
 
     return Promise.all([createOverviewItem, createPostItem]).then(results => {
         console.log('Post has been created')
-        return event.ref().remove().then(result => {
+        return event.data.ref.remove().then(result => {
             console.log('Removed from queue');
         });
     });
