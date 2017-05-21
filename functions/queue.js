@@ -18,7 +18,7 @@ function processNewPost(evt = DeltaSnapShot) {
     }
     if (post.content) {
         for (let section of Object.keys(post.content)) {
-            if (post.console[section].images) {
+            if (post.content[section].images) {
                 // Make first image the thumbnail
                 overviewObject.thumbnail = Object.values(post.content[section].images)[0];
                 break;
