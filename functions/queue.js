@@ -9,6 +9,10 @@ function processNewPost(evt = DeltaSnapShot) {
         return console.log('Post removed from queue');
     }
 
+    if (post.time) {
+        post.time = new Date(post.time).toISOString();
+    }
+
     const overviewObject = {
         title: post.title,
         location: post.location,
