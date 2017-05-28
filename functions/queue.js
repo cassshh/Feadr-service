@@ -40,7 +40,7 @@ function processNewPost(evt) {
       }
     }
   }
-  post.location = location;
+  post.location.address_components = location;
 
   // Set overview object
   const overviewObject = {
