@@ -13,10 +13,14 @@ const CreatePost = functions.database.ref('/queue/posts/create/{postUid}')
 const RemovePost = functions.database.ref('/queue/posts/remove/{postUid}')
     .onWrite(queue.removePost);
 
+const CreateComment = functions.database.ref('/queue/comments/create/{postUid}/{commentUid}')
+    .onWrite(queue.createComment);
+
 const NewUser = functions.auth.user().onCreate(auth.processNewUser);
 
 module.exports = {
     CreatePost: CreatePost,
     RemovePost: RemovePost,
+    CreateComment: CreateComment,
     NewUser: NewUser
 };
