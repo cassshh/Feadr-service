@@ -19,6 +19,7 @@ function processRemovePost(evt) {
             // TODO Remove images
             promises.push(evt.data.adminRef.root.child(`/posts/${postUid}`).set(null));
             promises.push(evt.data.adminRef.root.child(`/overview/${postUid}`).set(null));
+            promises.push(evt.data.adminRef.root.child(`/points/posts/${postUid}`).set(null));
 
             const userUid = snapshot.val().user_uid;
             promises.push(evt.data.adminRef.root.child(`/user_posts/${userUid}/${postUid}`).set(null));
