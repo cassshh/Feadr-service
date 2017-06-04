@@ -65,12 +65,12 @@ function processNewPost(evt) {
 
     // Process tags
     if (post.tags) {
-        for (const tag in post.tags) {
+        for (let tag in post.tags) {
             // Strip tags so more tags fall under one node
             // wholesomememes | Wholesome Memes
-            let tagname = post.tags[tag].replace(/\s+/g, '');
-            tagname = tagname.toLowerCase();
-            promises.push(evt.data.adminRef.root.child(`/tags/${tagname}/posts/${postUid}`).set(postUid));
+            tag = post.tags[tag].replace(/[&\/\\#,+()$@^~%.'";:*?!<>{}\s+]/g, '');
+            tag = tag.toLowerCase();
+            promises.push(evt.data.adminRef.root.child(`/tags/${tag}/posts/${postUid}`).set(postUid));
         }
     }
 

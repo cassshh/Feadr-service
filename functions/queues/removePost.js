@@ -26,8 +26,17 @@ function processRemovePost(evt) {
             const userUid = snapshot.val().user_uid;
             promises.push(evt.data.adminRef.root.child(`/user_posts/${userUid}/${postUid}`).set(null));
 
+            const tags = snapshot.val().tags;
+            if (tags) {
+                for (let tag in tags) {
+                    tag = post.tags[tag].replace(/[&\/\\#,+()$@^~%.'";:*?!<>{}\s+]/g, '');
+                    tag = tag.toLowerCase();
+                    promises.push(evt.data.adminRef.root.child(`/tags/${tag}/posts/${postUid}`).set(null));
+                }
+            }
+
             const address_components = snapshot.val().location.address_components;
-            for (const comp of Object.keys(address_components)) {
+            for (const comp in address_components) {
                 promises.push(evt.data.adminRef.root.child(`/location/${comp}/${address_components[comp].long_name}/posts/${postUid}`).set(null));
             }
         } else {
