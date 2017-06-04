@@ -62,7 +62,7 @@ function processNewPost(evt) {
         }
     }
 
-    for (const type of location) {
+    for (const type in location) {
         promises.push(evt.data.adminRef.root.child(`/location/${type}/${location[type].long_name}/posts/${postUid}`).set(postUid));
     }
 
