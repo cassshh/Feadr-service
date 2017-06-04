@@ -4,8 +4,8 @@ function processNewComment(evt) {
     console.log('Processing new comment');
     
     const comment = evt.data.val();
-    const postUid = evt.params.postUid;
-    const commentUid = evt.params.commentUid;
+    const postUid = evt.params.post;
+    const commentUid = evt.params.uid;
     const promises = [];
 
     // Comment is removed

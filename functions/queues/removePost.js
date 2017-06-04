@@ -16,7 +16,7 @@ function processRemovePost(evt) {
         if (snapshot.val()) {
             console.log('Data received!');
             console.log(snapshot.val());
-            // TODO Remove images
+            // TODO Remove images & comments
             promises.push(snapshot.ref.set(null));
             promises.push(evt.data.adminRef.root.child(`/overview/${postUid}`).set(null));
             promises.push(evt.data.adminRef.root.child(`/points/posts/${postUid}`).set(null));

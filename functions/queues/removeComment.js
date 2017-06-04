@@ -3,7 +3,7 @@
 function processRemoveComment(evt) {
     console.log('Processing removal comment');
 
-    const postUid = evt.params.postUid;
+    const postUid = evt.params.post;
     const commentUid = evt.data.val();
     const promises = [];
 

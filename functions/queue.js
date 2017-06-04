@@ -1,29 +1,37 @@
 'use strict';
 
-const queueCreatePost = require('./queues/createPost');
-const queueRemovePost = require('./queues/removePost');
-const queueCreateComment = require('./queues/createComment');
-const queueRemoveComment = require('./queues/removeComment');
+const createPost = require('./queues/createPost');
+const removePost = require('./queues/removePost');
+const createComment = require('./queues/createComment');
+const removeComment = require('./queues/removeComment');
 
-function addPost(evt) {
-  return queueCreatePost.processNewPost(evt);
+function processPost(evt) {
+  const action = evt.params.action;
+  console.log('Processing post | ' + action);
+  switch(action) {
+    case 'create':
+      return createPost.processNewPost(evt);
+    case 'remove':
+      return removePost.processRemovePost(evt);
+    default:
+      return console.log('Invalid action: ' + action);
+  }  
 }
 
-function removePost(evt) {
-  return queueRemovePost.processRemovePost(evt);
-}
-
-function createComment(evt) {
-  return queueCreateComment.processNewComment(evt);
-}
-
-function removeComment(evt) {
-  return queueRemoveComment.processRemoveComment(evt);
+function processComment(evt) {
+  const action = evt.params.action;
+  console.log('Processing comment | ' + action);
+  switch (action) {
+    case 'create':
+      return createComment.processNewComment(evt);
+    case 'remove':
+      return removeComment.processRemoveComment(evt);
+    default:
+      return console.log('Invalid action: ' + action);
+  }
 }
 
 module.exports = {
-  addPost: addPost,
-  removePost: removePost,
-  createComment: createComment,
-  removeComment: removeComment
+  processPost: processPost,
+  processComment: processComment
 };
