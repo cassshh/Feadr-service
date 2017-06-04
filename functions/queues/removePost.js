@@ -29,7 +29,7 @@ function processRemovePost(evt) {
             const tags = snapshot.val().tags;
             if (tags) {
                 for (let tag in tags) {
-                    tag = post.tags[tag].replace(/[&\/\\#,+()$@^~%.'";:*?!<>{}\s+]/g, '');
+                    tag = snapshot.val().tags[tag].replace(/[&\/\\#,+()$@^~%.'";:*?!<>{}\s+]/g, '');
                     tag = tag.toLowerCase();
                     promises.push(evt.data.adminRef.root.child(`/tags/${tag}/posts/${postUid}`).set(null));
                 }
