@@ -7,8 +7,8 @@ admin.initializeApp(functions.config().firebase);
 const queue = require('./queue');
 const auth = require('./auth');
 
-const PostCreated = functions.database.ref('/queue/posts/{postUid}')
-    .onWrite(queue.processNewPost);
+const PostCreated = functions.database.ref('/queue/posts/create/{postUid}')
+    .onWrite(queue.addPost);
 
 const NewUser = functions.auth.user().onCreate(auth.processNewUser);
 
