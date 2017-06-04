@@ -66,7 +66,7 @@ function processNewPost(evt) {
         promises.push(evt.data.adminRef.root.child(`/location/${type}/${location[type].long_name}/posts/${postUid}`).set(postUid));
     }
 
-    promises.push(evt.data.adminRef.root.child(`/user_posts/${post.user_uid}/posts/${postUid}`).set(postUid));
+    promises.push(evt.data.adminRef.root.child(`/user_posts/${post.user_uid}/${postUid}`).set(postUid));
     promises.push(evt.data.adminRef.root.child(`/overview/${postUid}`).set(overviewObject));
     promises.push(evt.data.adminRef.root.child(`/posts/${postUid}`).set(post));
 

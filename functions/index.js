@@ -7,12 +7,16 @@ admin.initializeApp(functions.config().firebase);
 const queue = require('./queue');
 const auth = require('./auth');
 
-const PostCreated = functions.database.ref('/queue/posts/create/{postUid}')
+const CreatePost = functions.database.ref('/queue/posts/create/{postUid}')
     .onWrite(queue.addPost);
+
+const RemovePost = functions.database.ref('/queue/posts/remove/{postUid}')
+    .onWrite(queue.removePost);
 
 const NewUser = functions.auth.user().onCreate(auth.processNewUser);
 
 module.exports = {
-    PostCreated: PostCreated,
+    CreatePost: CreatePost,
+    RemovePost: RemovePost,
     NewUser: NewUser
 };
