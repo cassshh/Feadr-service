@@ -3,14 +3,16 @@
 function processRemoveComment(evt) {
     console.log('Processing removal comment');
 
-    const postUid = evt.params.post;
-    const commentUid = evt.data.val();
+    const comment = evt.data.val();
     const promises = [];
 
     // Comment is removed
-    if (!commentUid) {
+    if (!comment) {
         return console.log('Comment removed from queue');
     }
+
+    const postUid = comment.post_uid;
+    const commentUid = commentUid.comment_uid;
 
     console.log('Retrieving comment data...');
     evt.data.adminRef.root.child(`/post_comments/${postUid}/${commentUid}`).once('value', (snapshot) => {

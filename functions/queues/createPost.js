@@ -4,7 +4,7 @@ function processNewPost(evt) {
     console.log('Processing new post');
     
     const post = evt.data.val();
-    const postUid = evt.params.uid;
+    const postUid = evt.params.push;
     const promises = [];
 
     // Post is removed

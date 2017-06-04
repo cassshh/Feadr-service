@@ -4,14 +4,15 @@ function processNewComment(evt) {
     console.log('Processing new comment');
     
     const comment = evt.data.val();
-    const postUid = evt.params.post;
-    const commentUid = evt.params.uid;
+    const commentUid = evt.params.push;
     const promises = [];
 
     // Comment is removed
     if (!comment) {
         return console.log('Comment removed from queue');
     }
+
+    const postUid = comment.post_uid;
 
     // Set time format
     if (comment.time) {

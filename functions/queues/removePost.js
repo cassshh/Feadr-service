@@ -3,13 +3,15 @@
 function processRemovePost(evt) {
     console.log('Processing removal post');
 
-    const postUid = evt.data.val();
+    const post = evt.data.val();
     const promises = [];
 
     // Post is removed
-    if (!postUid) {
+    if (!post) {
         return console.log('Post removed from queue');
     }
+
+    const postUid = post.post_uid;
 
     console.log('Retrieving post data...');
     evt.data.adminRef.root.child(`/posts/${postUid}`).once('value', (snapshot) => {
