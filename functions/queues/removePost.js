@@ -12,12 +12,12 @@ function processRemovePost(evt) {
     }
 
     console.log('Retrieving post data...');
-    evt.data.adminRef.root.child(`/overview/${postUid}`).once('value', (snapshot) => {
-        console.log('Data received!');
+    evt.data.adminRef.root.child(`/posts/${postUid}`).once('value', (snapshot) => {
         if (snapshot.val()) {
+            console.log('Data received!');
             console.log(snapshot.val());
             // TODO Remove images
-            promises.push(evt.data.adminRef.root.child(`/posts/${postUid}`).set(null));
+            promises.push(snapshot.ref.set(null));
             promises.push(evt.data.adminRef.root.child(`/overview/${postUid}`).set(null));
             promises.push(evt.data.adminRef.root.child(`/points/posts/${postUid}`).set(null));
 
@@ -28,6 +28,8 @@ function processRemovePost(evt) {
             for (const comp of Object.keys(address_components)) {
                 promises.push(evt.data.adminRef.root.child(`/location/${comp}/${address_components[comp].long_name}/posts/${postUid}`).set(null));
             }
+        } else {
+            console.log('No data found...');
         }
         return Promise.all(promises).then(() => {
             console.log('Post removal has been processed');

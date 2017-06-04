@@ -2,6 +2,7 @@
 
 function processNewPost(evt) {
     console.log('Processing new post');
+    
     const post = evt.data.val();
     const postUid = evt.params.postUid;
     const promises = [];
