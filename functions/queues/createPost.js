@@ -2,7 +2,7 @@
 
 function processNewPost(evt) {
     console.log('Processing new post');
-    
+
     const post = evt.data.val();
     const postUid = evt.params.push;
     const promises = [];
@@ -63,12 +63,24 @@ function processNewPost(evt) {
         }
     }
 
+    // Process tags
+    if (post.tags) {
+        for (const tag in post.tags) {
+            // Strip tags so more tags fall under one node
+            // wholesomememes | Wholesome Memes
+            let tagname = post.tags[tag].replace(/\s+/g, '');
+            tagname = tagname.toLowerCase();
+            promises.push(evt.data.adminRef.root.child(`/tags/${tagname}/posts/${postUid}`).set(postUid));
+        }
+    }
+
+    // Process locations
     for (const type in location) {
         promises.push(evt.data.adminRef.root.child(`/location/${type}/${location[type].long_name}/posts/${postUid}`).set(postUid));
     }
 
     promises.push(evt.data.adminRef.root.child(`/user_posts/${post.user_uid}/${postUid}`).set(postUid));
-    promises.push(evt.data.adminRef.root.child(`/points/posts/${postUid}`).set({upvotes: 0, downvotes: 0}));
+    promises.push(evt.data.adminRef.root.child(`/points/posts/${postUid}`).set({ upvotes: 0, downvotes: 0 }));
     promises.push(evt.data.adminRef.root.child(`/overview/${postUid}`).set(overviewObject));
     promises.push(evt.data.adminRef.root.child(`/posts/${postUid}`).set(post));
 

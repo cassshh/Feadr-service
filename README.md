@@ -17,6 +17,9 @@ data = {
         },
     },
     location: google.maps.places.PlaceResult,
+    tags: {
+        $t: tag
+    }
     time: firebase.database.ServerValue.TIMESTAMP,
     title: title,
     user_uid: user_uid,
