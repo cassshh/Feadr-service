@@ -12,7 +12,7 @@ function processRemoveComment(evt) {
     }
 
     const postUid = comment.post_uid;
-    const commentUid = commentUid.comment_uid;
+    const commentUid = comment.comment_uid;
 
     console.log('Retrieving comment data...');
     evt.data.adminRef.root.child(`/post_comments/${postUid}/${commentUid}`).once('value', (snapshot) => {
