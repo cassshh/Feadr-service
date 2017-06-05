@@ -63,10 +63,7 @@ ref('queue/comments/{action}').push(data);
 
 **Voting**
 ```JavaScript
-let data;
-
-// action == 'create'
-data = {
+const data = {
     type_uid: type_uid, // uid of the type
     user_uid: user_uid,
 };
