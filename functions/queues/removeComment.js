@@ -21,7 +21,7 @@ function processRemoveComment(evt) {
             console.log(snapshot.val());
             
             promises.push(snapshot.ref.set(null));
-            promises.push(evt.data.adminRef.root.child(`/points/comments/${commentUid}`).set(null));
+            promises.push(evt.data.adminRef.root.child(`/votes/comments/${commentUid}`).set(null));
 
             const userUid = snapshot.val().user_uid;
             promises.push(evt.data.adminRef.root.child(`/user_post_comments/${userUid}/${postUid}/${commentUid}`).set(null));

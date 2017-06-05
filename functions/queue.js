@@ -4,6 +4,7 @@ const createPost = require('./queues/createPost');
 const removePost = require('./queues/removePost');
 const createComment = require('./queues/createComment');
 const removeComment = require('./queues/removeComment');
+const voting = require('./queues/votes');
 
 function processPost(evt) {
   const action = evt.params.action;
@@ -31,7 +32,12 @@ function processComment(evt) {
   }
 }
 
+function processVote(evt) {
+  return voting.processVote(evt);
+}
+
 module.exports = {
   processPost: processPost,
-  processComment: processComment
+  processComment: processComment,
+  processVote: processVote
 };

@@ -20,7 +20,7 @@ function processNewComment(evt) {
     }
 
     promises.push(evt.data.adminRef.root.child(`/post_comments/${postUid}/${commentUid}`).set(comment));
-    promises.push(evt.data.adminRef.root.child(`/points/comments/${commentUid}`).set({upvotes: 0, downvotes: 0}));
+    promises.push(evt.data.adminRef.root.child(`/votes/comments/${commentUid}`).set({upvotes: 0, downvotes: 0}));
     promises.push(evt.data.adminRef.root.child(`/user_post_comments/${comment.user_uid}/${postUid}/${commentUid}`).set(commentUid));
 
     return Promise.all(promises).then(() => {

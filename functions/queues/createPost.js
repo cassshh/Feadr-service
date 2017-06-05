@@ -80,7 +80,7 @@ function processNewPost(evt) {
     }
 
     promises.push(evt.data.adminRef.root.child(`/user_posts/${post.user_uid}/${postUid}`).set(postUid));
-    promises.push(evt.data.adminRef.root.child(`/points/posts/${postUid}`).set({ upvotes: 0, downvotes: 0 }));
+    promises.push(evt.data.adminRef.root.child(`/votes/posts/${postUid}`).set({ upvotes: 0, downvotes: 0 }));
     promises.push(evt.data.adminRef.root.child(`/overview/${postUid}`).set(overviewObject));
     promises.push(evt.data.adminRef.root.child(`/posts/${postUid}`).set(post));
 

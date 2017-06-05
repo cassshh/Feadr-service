@@ -21,7 +21,7 @@ function processRemovePost(evt) {
             // TODO Remove images & comments
             promises.push(snapshot.ref.set(null));
             promises.push(evt.data.adminRef.root.child(`/overview/${postUid}`).set(null));
-            promises.push(evt.data.adminRef.root.child(`/points/posts/${postUid}`).set(null));
+            promises.push(evt.data.adminRef.root.child(`/votes/posts/${postUid}`).set(null));
 
             const userUid = snapshot.val().user_uid;
             promises.push(evt.data.adminRef.root.child(`/user_posts/${userUid}/${postUid}`).set(null));
