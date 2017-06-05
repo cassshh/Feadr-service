@@ -31,9 +31,9 @@ data = {
     post_uid: post_uid,
 };
 
-
-// Replace action with your action.
-ref('/queue/posts/{action}').push(data);
+// Replace params with correct values
+// action = 'create' || 'remove'
+ref('queue/posts/{action}').push(data);
 ```
 
 
@@ -56,7 +56,23 @@ data = {
     comment_uid: comment_uid,
 };
 
+// Replace params with correct values
+// action = 'create' || 'remove'
+ref('queue/comments/{action}').push(data);
+```
 
-// Replace action with your action.
-ref('/queue/comments/{action}').push(data);
+**Voting**
+```JavaScript
+let data;
+
+// action == 'create'
+data = {
+    type_uid: type_uid, // uid of the type
+    user_uid: user_uid,
+};
+
+// Replace params with correct values
+// type = 'post' || 'comment'
+// action = 'upvote' || 'downvote'
+ref('queue/votes/{type}/{action}').push(data);
 ```
