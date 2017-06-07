@@ -44,7 +44,7 @@ function processRemovePost(evt) {
         }
         return Promise.all(promises).then(() => {
             console.log('Post removal has been processed');
-            evt.data.ref.remove();
+            return evt.data.ref.remove();
         });
     });
 }
