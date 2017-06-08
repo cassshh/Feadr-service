@@ -20,10 +20,7 @@ data = {
     tags: {
         $t: tag
     }
-    time: firebase.database.ServerValue.TIMESTAMP,
     title: title,
-    user_uid: user_uid,
-    username: username,
 };
 
 // action == 'remove'
