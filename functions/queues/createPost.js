@@ -84,7 +84,7 @@ function processNewPost(evt) {
                     tag = tag.replace(/\s+/g, '').toLowerCase(); // Remove spaces & to lower case
                     
                     promises.push(evt.data.adminRef.root.child(`/tags/${tag}/posts/${postUid}`).set(true));
-                    promises.push(evt.data.adminRef.root.child(`/tag_count/${tag}`).transaction((count) => {
+                    promises.push(evt.data.adminRef.root.child(`/tags_count/${tag}`).transaction((count) => {
                         if(count === null || isNaN(count)) {
                             count = 1;
                         } else {

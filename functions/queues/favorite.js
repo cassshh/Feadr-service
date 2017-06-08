@@ -8,7 +8,7 @@ function processFavorite(evt) {
 
         // Check if removed
         if (!data) {
-            reject('Removed from queue');
+            resolve('Removed from queue');
         }
 
         // Check on auth
