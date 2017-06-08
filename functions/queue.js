@@ -4,7 +4,8 @@ const createPost = require('./queues/createPost');
 const removePost = require('./queues/removePost');
 const createComment = require('./queues/createComment');
 const removeComment = require('./queues/removeComment');
-const voting = require('./queues/votes');
+const votes = require('./queues/votes');
+const favorite = require('./queues/favorite');
 
 function processPost(evt) {
   const action = evt.params.action;
@@ -33,11 +34,16 @@ function processComment(evt) {
 }
 
 function processVote(evt) {
-  return voting.processVote(evt);
+  return votes.processVote(evt);
+}
+
+function processFavorite(evt) {
+  return favorite.processFavorite(evt);
 }
 
 module.exports = {
   processPost: processPost,
   processComment: processComment,
-  processVote: processVote
+  processVote: processVote,
+  processFavorite: processFavorite
 };
