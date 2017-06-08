@@ -73,3 +73,12 @@ const data = {
 // action = 'upvote' || 'downvote'
 ref('queue/votes/{type}/{action}').push(data);
 ```
+
+**Favoriting**
+```JavaScript
+const data = {
+    post_uid: post_uid,
+};
+
+ref('queue/favorites').push(data);
+```
