@@ -6,7 +6,7 @@ function processFavorite(evt) {
     return new Promise((resolve, reject) => {
         const data = evt.data.val();
 
-        // Check if is removed
+        // Check if removed
         if (!data) {
             reject('Removed from queue');
         }
@@ -42,7 +42,7 @@ function processFavorite(evt) {
                     // Post doesnt exist
                     reject(`Post ${postUid} does not exist. Not favoriting`);
                 }
-            })
+            });
         } else {
             reject('Insufficient data');
         }

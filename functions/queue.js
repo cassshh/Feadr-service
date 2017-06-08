@@ -4,7 +4,7 @@ const createPost = require('./queues/createPost');
 const removePost = require('./queues/removePost');
 const createComment = require('./queues/createComment');
 const removeComment = require('./queues/removeComment');
-const votes = require('./queues/votes');
+const vote = require('./queues/votes');
 const favorite = require('./queues/favorite');
 
 function processPost(evt) {
@@ -34,7 +34,7 @@ function processComment(evt) {
 }
 
 function processVote(evt) {
-  return votes.processVote(evt);
+  return vote.processVote(evt);
 }
 
 function processFavorite(evt) {
