@@ -98,6 +98,14 @@ function processNewPost(evt) {
             // Process locations
             for (const type in location) {
                 promises.push(evt.data.adminRef.root.child(`/location/${type}/${location[type].long_name}/posts/${postUid}`).set(true));
+                promises.push(evt.data.adminRef.root.child(`/location_count/${type}/${location[type].long_name}`).transaction((count) => {
+                    if (count === null || isNaN(count)) {
+                        count = 1;
+                    } else {
+                        count++;
+                    }
+                    return count;
+                }));
             }
 
             promises.push(evt.data.adminRef.root.child(`/user_posts/${data.user_uid}/${postUid}`).set(true));
