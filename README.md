@@ -19,7 +19,7 @@ data = {
     location: google.maps.places.PlaceResult,
     tags: {
         $t: tag
-    }
+    },
     title: title,
 };
 
