@@ -1,0 +1,18 @@
+language: node_js
+sudo: required
+dist: trusty
+node_js:
+- '6'
+before_script:
+- npm list -g firebase-tools --depth=0 || npm install -g firebase-tools
+script:
+- npm install
+- cd functions
+- npm install
+- cd ..
+after_success:
+- ./deploy.sh
+notifications:
+  email: false
+  slack:
+    secure: Pv9rbEk76rtagRxlp0miDb61IVoUPHlIEVsD2v5NGh7QxEXEHxv+Ok5YyV5L0UQlgdOP6POBb5i4+6NzbHrxQUSC5Y+TC0mW5qWfY5QdIyHILPis6vcsi0EcnfQc0BcRCuv1Rec0uKzb+mFT6ABCOKWXcEW9KObaui/JsO0EsyPmcZHREUtymdetbMvHHWqOig1Hlk/wj+7TQQDNMw8cFewCm0OTWs99AUZXYFyWR486xZG140F0T2W0MmOnnNEc4j9JSlVt2p8/1q+Q8+I4D5akc01tybU0zU4l/Wg3tWZNXLk3k1/Y6ky0xbJAcDiCSd2uwBBHPVccuUkWLGTxcSQ94Rvf3J8mPLSRE94V5geTipM8gth3+ZLWfpNAukhVGCIYeVRW8Qf4oErMSIMFcFDRsG5LCiLf2E0D4vSPMz1WCPxt75/SnzXrK38N63GiWNODpjNfMXdlj4OKxhpZBdojB7gV9N7yIXmuKZiLLcQRXNTLt7I+k0QUklfNQR2UsRQ0Vb3/lpWe0vt9h5dBmw6fWyG9tSbNL4nvl4fZ7yAkfEv2umP+IgGfDfhN54rQ0q01OeyCnZ7kaRSJ1b5Hxjqf3bmQvvCRNZRi/9ebIsigrHY7QFxQOgOyfANmsgYuztUXUg+YKKmAKGNjNEOVvmusY/gLzt7Z4Cf9w8s+Xkk=
